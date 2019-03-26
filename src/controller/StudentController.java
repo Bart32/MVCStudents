@@ -5,7 +5,9 @@ import view.StudentView;
 public class StudentController {
 
     public void run(){
-        Student first = new Student(50,1 );
+        StudentView view  = new StudentView();
+        Student first = new Student(1,1 );
+        view.printStudentsDetail(first);
 
     }
 }
