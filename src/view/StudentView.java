@@ -1,11 +1,12 @@
 package view;
-import controller.StudentController;
 import model.Student;
+import java.util.List;
 
 
 public class StudentView {
-    public void printStudentsDetail(Student student){
-        String result =student.getAlbumNo() + " " +  student.getCurrentSemester();
-        System.out.println(result);
+    public void printStudentsDetail(List<Student> students) {
+        for (Student student : students) {
+            System.out.println(student.getAlbumNo());
+        }
     }
-};
+}
