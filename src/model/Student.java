@@ -4,27 +4,25 @@ import controller.StudentController;
 public class Student extends  Person{
 
     private int currentSemester;
-    private int albumNo;
+    static private int albumNo = 0;
 
     public int getCurrentSemester() {
         return currentSemester;
     }
 
     public int getAlbumNo() {
-        return albumNo;
+        return albumNo += 1;
     }
 
     public Student(){
-        this(0,0);
+        this.currentSemester = 0;
     };
 
-    public Student(int albumNo, int currentSemester) {
-        this.albumNo = albumNo;
+    public Student(int currentSemester) {
         this.currentSemester = currentSemester;
     };
-    public Student(String name, String surname, int age, int albumNo, int currentSemester) {
+    public Student(String name, String surname, int age, int currentSemester) {
         super(name, surname, age);
-        this.albumNo = albumNo;
         this.currentSemester = currentSemester;
     };
 };
