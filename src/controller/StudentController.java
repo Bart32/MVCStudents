@@ -9,7 +9,7 @@ public class StudentController {
 
     public void run(){
         StudentView view  = new StudentView();
-        Student first = new Student(1,1 );
+        Student first = new Student("Jacek","Placek",1, 1,1 );
         Student second = new Student(2,1 );
         List<Student> students = new ArrayList<>();
         students.add(first);
