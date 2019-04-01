@@ -1,5 +1,4 @@
 package model;
-import controller.StudentController;
 
 public class Student extends  Person{
 
@@ -9,18 +8,17 @@ public class Student extends  Person{
     public int getCurrentSemester() {
         return currentSemester;
     }
-
-    public int getAlbumNo() {
+    public int createUnicalAlbumNo() {
         return albumNo += 1;
     }
 
     public Student(){
-        this.currentSemester = 0;
     };
 
-    public Student(int currentSemester) {
-        this.currentSemester = currentSemester;
+    public Student (String name, String surname, int age){
+        super(name, surname, age);
     };
+
     public Student(String name, String surname, int age, int currentSemester) {
         super(name, surname, age);
         this.currentSemester = currentSemester;

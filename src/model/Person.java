@@ -1,25 +1,26 @@
 package model;
 
-public class Person {
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public int getAge() {
-        return age;
-    }
+public abstract class Person {
 
     private String name;
     private String surname;
     private int age;
-    public Person() {
-        this("-", "-", 0);
+
+    public String getName() {
+        return name;
     }
-    public Person(String name, String surname, int age){
+    public String getSurname() {
+        return surname;
+    }
+    public int getAge() {
+        return age;
+    }
+
+    public Person() {
+        this("-", "-",0  );
+    }
+
+    public Person(String name, String surname, int age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
