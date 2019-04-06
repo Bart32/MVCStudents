@@ -16,24 +16,19 @@ public class StudentFromDbase {
     public static int getAlbumNoDbase() {
         return albumNoDbase;
     }
-
     public static String getNameDbase() {
         return nameDbase;
     }
-
     public static String getSurnameDbase() {
         return surnameDbase;
     }
-
     public static int getAgeDbase() {
         return ageDbase;
     }
-
     public static int getCurrentSemesterDbase() {
         return currentSemesterDbase;
     }
-
-    public List<Student> getListOfStudents() {
+    public static List<Student> getListOfStudents() {
         return listOfStudents;
     }
 

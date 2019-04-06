@@ -7,6 +7,6 @@ public class Main {
 
     public static void main(String[] args)throws SQLException {
         StudentController controller = new StudentController();
-        controller.run();
+            controller.run();
     }
 }
