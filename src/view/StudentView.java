@@ -3,7 +3,6 @@ import model.Student;
 
 import java.util.List;
 
-
 public class StudentView {
 
     public static void printStudentsDetail(List<Student> students) {

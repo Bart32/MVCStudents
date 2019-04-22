@@ -74,14 +74,14 @@ public class ResultSetTest extends BaseTestCase {
         assertThrows(NotUpdatable.class, "Result Set not updatable.*", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                rsTmp.updateObject("test", rsTmp.toString(), JDBCType.VARCHAR);
+                rsTmp.updateObject("tests", rsTmp.toString(), JDBCType.VARCHAR);
                 return null;
             }
         });
         assertThrows(NotUpdatable.class, "Result Set not updatable.*", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                rsTmp.updateObject("test", rsTmp.toString(), JDBCType.VARCHAR, 10);
+                rsTmp.updateObject("tests", rsTmp.toString(), JDBCType.VARCHAR, 10);
                 return null;
             }
         });

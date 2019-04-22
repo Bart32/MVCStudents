@@ -202,7 +202,7 @@ com.mysql.jdbc.noCleanBetweenCompiles=yes
 
     <!-- The following propertyset is used to forward tests setup configurations as system variables to JUnit tasks. -->
     <propertyset id="junit.system.properties">
-        <propertyref prefix="com.mysql.jdbc.test." />
+        <propertyref prefix="com.mysql.jdbc.tests." />
         <!-- Exclude 'testsuite' properties ending with '.url', '.url.N', '.jvm' or '.jvm.N'. -->
         <propertyref regex="^com\.mysql\.jdbc\.testsuite\..*(?&lt;!(?:url|jvm)(?:\.\d)?)$" />
     </propertyset>
@@ -717,7 +717,7 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
 
         <delete dir="${toPackage}" />
 
-        <patternset id="non.test.sources">
+        <patternset id="non.tests.sources">
             <exclude name="**/*.nb*" />
             <exclude name="**/*.bak" />
             <exclude name="**/*.*~" />
@@ -1135,8 +1135,8 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
             depends="compile">
         <array8 arrayproperty="com.mysql.jdbc.testsuite.jvm" outputproperty="jvm.value" indexproperty="jvm.index">
             <array8 arrayproperty="com.mysql.jdbc.testsuite.url" outputproperty="url.value" indexproperty="url.index">
-                <local name="test.run" />
-                <condition property="test.run">
+                <local name="tests.run" />
+                <condition property="tests.run">
                     <and>
                         <isset property="jvm.value" />
                         <isset property="url.value" />
@@ -1146,9 +1146,9 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
                     <param name="jvm.value" value="${jvm.value}" />
                     <param name="url.value" value="${url.value}" />
                     <param name="url.index" value="${url.index}" />
-                    <param name="test.mode" value="testsuite" />
-                    <param name="test.target" value="test" />
-                    <param name="test.run" value="${test.run}" />
+                    <param name="tests.mode" value="testsuite" />
+                    <param name="tests.target" value="test" />
+                    <param name="tests.run" value="${test.run}" />
                 </antcall>
             </array8>
         </array8>
@@ -1163,27 +1163,27 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
 
         <mkdir dir="${junit.unitregress.results}/report" />
 
-        <local name="test.ismethods" />
-        <condition property="test.ismethods">
+        <local name="tests.ismethods" />
+        <condition property="tests.ismethods">
             <and>
                 <isset property="test" />
                 <isset property="methods" />
             </and>
         </condition>
 
-        <local name="test.message.jdbc3orcommon" />
-        <condition property="test.message.jdbc3orcommon"
+        <local name="tests.message.jdbc3orcommon" />
+        <condition property="tests.message.jdbc3orcommon"
                    value="Running JDBC 3 unit tests against '${com.mysql.jdbc.testsuite.url.final}' with jvm '${com.mysql.jdbc3.testsuite.jvm.java}'">
             <not>
                 <isset property="test" />
             </not>
         </condition>
-        <condition property="test.message.jdbc3orcommon"
+        <condition property="tests.message.jdbc3orcommon"
                    value="Running JDBC unit test '${test}', method(s) '${methods}' against '${com.mysql.jdbc.testsuite.url.final}' with jvm '${com.mysql.jdbc3.testsuite.jvm.java}'"
                    else="Running JDBC unit test '${test}' against '${com.mysql.jdbc.testsuite.url.final}' with jvm '${com.mysql.jdbc3.testsuite.jvm.java}'">
-            <isset property="test.ismethods" />
+            <isset property="tests.ismethods" />
         </condition>
-        <echo>${test.message.jdbc3orcommon}</echo>
+        <echo>${tests.message.jdbc3orcommon}</echo>
 
         <junit printsummary="yes"
                fork="on"
@@ -1227,15 +1227,15 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
             </batchtest>
         </junit>
 
-        <local name="test.message.jdbc4" />
-        <condition property="test.message.jdbc4"
+        <local name="tests.message.jdbc4" />
+        <condition property="tests.message.jdbc4"
                    value="Running JDBC 4+(&lt;4.2) unit tests against '${com.mysql.jdbc.testsuite.url.final}' with jvm '${com.mysql.jdbc4.testsuite.jvm.java}'"
                    else="">
             <not>
                 <isset property="test" />
             </not>
         </condition>
-        <echo>${test.message.jdbc4}</echo>
+        <echo>${tests.message.jdbc4}</echo>
 
         <junit printsummary="yes"
                fork="on"
@@ -1272,15 +1272,15 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
             </batchtest>
         </junit>
 
-        <local name="test.message.jdbc42" />
-        <condition property="test.message.jdbc42"
+        <local name="tests.message.jdbc42" />
+        <condition property="tests.message.jdbc42"
                    value="Running JDBC 4.2 unit tests against '${com.mysql.jdbc.testsuite.url.final}' with jvm '${com.mysql.jdbc42.testsuite.jvm.java}'"
                    else="">
             <not>
                 <isset property="test" />
             </not>
         </condition>
-        <echo>${test.message.jdbc42}</echo>
+        <echo>${tests.message.jdbc42}</echo>
 
         <junit printsummary="yes"
                fork="on"
@@ -1334,13 +1334,13 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
             </condition>
         </fail>
 
-        <local name="test.message.dontfail" />
-        <condition property="test.message.dontfail" value="Skipping test failures check because of multi-test..." else="">
+        <local name="tests.message.dontfail" />
+        <condition property="tests.message.dontfail" value="Skipping test failures check because of multi-tests..." else="">
             <not>
                 <equals arg1="${test.result.prefix}" arg2="" />
             </not>
         </condition>
-        <echo>${test.message.dontfail}</echo>
+        <echo>${tests.message.dontfail}</echo>
     </target>
 
 
@@ -1350,8 +1350,8 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
     <target name="test-compliance-multijvm" description="Runs compliance test suite against multiple JVMs and server configs." depends="compile">
         <array8 arrayproperty="com.mysql.jdbc.testsuite.jvm" outputproperty="jvm.value" indexproperty="jvm.index">
             <array8 arrayproperty="com.mysql.jdbc.compliance.url" outputproperty="url.value" indexproperty="url.index">
-                <local name="test.run" />
-                <condition property="test.run">
+                <local name="tests.run" />
+                <condition property="tests.run">
                     <and>
                         <isset property="jvm.value" />
                         <isset property="url.value" />
@@ -1361,9 +1361,9 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
                     <param name="jvm.value" value="${jvm.value}" />
                     <param name="url.value" value="${url.value}" />
                     <param name="url.index" value="${url.index}" />
-                    <param name="test.mode" value="compliance" />
-                    <param name="test.target" value="test-compliance" />
-                    <param name="test.run" value="${test.run}" />
+                    <param name="tests.mode" value="compliance" />
+                    <param name="tests.target" value="test-compliance" />
+                    <param name="tests.run" value="${test.run}" />
                 </antcall>
             </array8>
         </array8>
@@ -1434,13 +1434,13 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
             </condition>
         </fail>
 
-        <local name="test.message.dontfail" />
-        <condition property="test.message.dontfail" value="Skipping test failures check because of multi-test..." else="">
+        <local name="tests.message.dontfail" />
+        <condition property="tests.message.dontfail" value="Skipping test failures check because of multi-tests..." else="">
             <not>
                 <equals arg1="${test.result.prefix}" arg2="" />
             </not>
         </condition>
-        <echo>${test.message.dontfail}</echo>
+        <echo>${tests.message.dontfail}</echo>
     </target>
 
 
@@ -1455,14 +1455,14 @@ Java 8 (for JDBC 4+ implementation) is also required. Set the full path to this 
             <param name="com.mysql.jdbc.testsuite.jvm.internal" value="${jvm.value}" />
             <param name="com.mysql.jdbc.${test.mode}.url.internal" value="${url.value}" />
             <param name="com.mysql.jdbc.noCleanBetweenCompiles" value="yes" />
-            <param name="test.result.prefix" value="/${junit.output}" />
+            <param name="tests.result.prefix" value="/${junit.output}" />
         </antcall>
     </target>
 
 
     <!-- Set the path where the test results will be stored -->
     <target name="-set-test-result-prefix" unless="${test.result.prefix}">
-        <property name="test.result.prefix" value="" />
+        <property name="tests.result.prefix" value="" />
     </target>
 
 

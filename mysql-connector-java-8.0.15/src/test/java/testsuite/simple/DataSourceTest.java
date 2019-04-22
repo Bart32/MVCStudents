@@ -103,7 +103,7 @@ public class DataSourceTest extends BaseTestCase {
     @Override
     public void tearDown() throws Exception {
         try {
-            this.ctx.unbind(this.tempDir.getAbsolutePath() + "/test");
+            this.ctx.unbind(this.tempDir.getAbsolutePath() + "/tests");
             this.ctx.close();
             this.tempDir.delete();
         } finally {

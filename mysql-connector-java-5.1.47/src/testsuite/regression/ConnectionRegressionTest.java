@@ -1762,7 +1762,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
             Properties props = getPropertiesFromTestsuiteUrl();
             String host = props.getProperty(NonRegisteringDriver.HOST_PROPERTY_KEY, "localhost");
             String port = props.getProperty(NonRegisteringDriver.PORT_PROPERTY_KEY, "3306");
-            String db = props.getProperty(NonRegisteringDriver.DBNAME_PROPERTY_KEY, "test");
+            String db = props.getProperty(NonRegisteringDriver.DBNAME_PROPERTY_KEY, "tests");
 
             String hostSpec = host;
 

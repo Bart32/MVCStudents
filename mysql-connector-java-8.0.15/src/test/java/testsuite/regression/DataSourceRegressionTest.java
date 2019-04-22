@@ -125,7 +125,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
      */
     @Override
     public void tearDown() throws Exception {
-        this.ctx.unbind(this.tempDir.getAbsolutePath() + "/test");
+        this.ctx.unbind(this.tempDir.getAbsolutePath() + "/tests");
         this.ctx.unbind(this.tempDir.getAbsolutePath() + "/testNoUrl");
         this.ctx.close();
         this.tempDir.delete();
@@ -371,8 +371,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
         assertTrue("Naming Context not created", this.ctx != null);
         ds = new MysqlConnectionPoolDataSource();
         ds.setUrl(dbUrl); // from BaseTestCase
-        ds.setDatabaseName("test");
-        this.ctx.bind(this.tempDir.getAbsolutePath() + "/test", ds);
+        ds.setDatabaseName("tests");
+        this.ctx.bind(this.tempDir.getAbsolutePath() + "/tests", ds);
     }
 
     private DataSource lookupDatasourceInJNDI(String jndiName) throws Exception {

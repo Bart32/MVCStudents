@@ -6,10 +6,12 @@ public class DbaseConnection {
     public static Connection connectWithDb (){
             Connection con = null;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/students", "user", "user");
+            con = DriverManager.getConnection("jdbc:mysql://mn01.webd.pl/groniek_students",
+                    "groniek_admin", "admin");
+            
         } catch (SQLException e) {
             System.out.println("Can't connect to database");
-            System.out.println("SQL STATE: " + e.getSQLState() + '\n');
+            e.printStackTrace();
         }
         return con;
     }

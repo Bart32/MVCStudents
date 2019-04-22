@@ -1,5 +1,4 @@
 package model;
-import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ public class StudentFromDbase {
     private static int ageDbase;
     private static int currentSemesterDbase;
     private static List<Student> listOfStudents = new ArrayList<>();
-
     public static int getAlbumNoDbase() {
         return albumNoDbase;
     }
@@ -33,7 +31,6 @@ public class StudentFromDbase {
     }
 
     public static void getStudentsFromDatabase(ResultSet rs) throws SQLException {
-
         while(rs.next()){
             albumNoDbase=  rs.getInt("id");
             nameDbase =  rs.getString("name");
